@@ -1,0 +1,85 @@
+swagger: "2.0"
+  info:
+    title: Events Api
+    description: API for the Events App
+    version: 1.0.0
+  host: https://gateway-events-api-ex7otr565q-uc.a.run.app/
+  schemes:
+    - https
+  components:
+    schemas:
+      Event:
+        type: object
+        properties:
+          id:
+            type: string
+          title:
+            type: string
+          location:
+            type: string
+          when:
+            type: string
+  paths:
+    /events:
+      get:
+        description: Get all events
+        operationId: getEvents
+        responses:
+          200:
+            description: Success.
+            content:
+              'application/json':
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Event'
+      post:
+        description: Add an event
+        operationId: addEvent
+        requestBody:
+          content:
+            'application/json;'
+            schema:
+              $ref: '#/components/schemas/Event'
+    /events/{eventId}:
+      get:
+        description: Get event by ID
+        operationId: getEventById
+        parameters:
+          - in: path
+            name: eventId
+            required: true
+            type: string
+            minimum: 1
+        responses:
+          200:
+            description: Success
+            content:
+              'application/json':
+                schema:
+                  $ref: '#/components/schemas/Event'
+      put:
+        description: Update event
+        operationId: updateEvent
+        parameters:
+          - in: path
+            name: eventId
+            required: true
+            type: string
+            minimum: 1
+        responses:
+          200:
+            description: Success
+            content:
+              'application/json':
+                schema:
+                  $ref: '#/components/schemas/Event'
+      delete:
+        description: Delete event
+        operationId: deleteEvent
+        parameters:
+          - in: path
+            name: eventId
+            required: true
+            type: string
+            minimum: 1
