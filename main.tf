@@ -57,7 +57,7 @@ resource "google_cloud_run_service_iam_policy" "policy" {
   service = google_cloud_run_service.events-api.name
   policy_data = data.google_iam_policy.noauth.policy_data
 }
-
+/*
 resource "google_api_gateway_api" "api_gw" {
   provider = google-beta
   api_id = "events-api-gw"
@@ -84,3 +84,4 @@ resource "google_api_gateway_gateway" "api_gw" {
   api_config = google_api_gateway_api_config.api_gw.id
   gateway_id = "events-api-gw"
 }
+*/
